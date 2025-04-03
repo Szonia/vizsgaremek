@@ -1,0 +1,25 @@
+
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h2>Bejelentkezés</h2>
+    <div>
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" type="email" />
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+        Az email címnek tartalmaznia kell az "&#64;" és "." karaktereket!
+      </div>
+    </div>
+    <div>
+      <label for="password">Jelszó</label>
+      <input id="password" formControlName="password" type="password" />
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+        A jelszónak legalább 5 karakter hosszúnak kell lennie!
+      </div>
+    </div>
+    <button type="submit" [disabled]="loginForm.invalid">Bejelentkezés</button>
+    
+    <button type="button" class="google-login-btn" (click)="googleLogin()">Bejelentkezés Google-al</button>
+    
+    <div *ngIf="loginError" class="error">{{ loginError }}</div>
+  </form>
+</div>
