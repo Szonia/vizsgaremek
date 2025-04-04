@@ -1,25 +1,30 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-fiokom',
-    templateUrl: './fiokom.component.html',
-    styleUrls: ['./fiokom.component.css'],
-    standalone: false
+  selector: 'app-fiokom',
+  templateUrl: './fiokom.component.html',
+  styleUrls: ['./fiokom.component.css'],
+  standalone: false
 })
 export class FiokomComponent implements OnInit {
-  userEmail: string = ''; 
+  userEmail: string = '';
+  username: string = '';
+  isLoggedIn: boolean = false;
 
   constructor(private router: Router) {}
 
   ngOnInit() {
     const storedEmail = localStorage.getItem('loggedInUser');
-    
+    console.log('localStorage tartalma:', storedEmail); 
+
     if (storedEmail) {
       this.userEmail = storedEmail;
-      console.log('Bejelentkezett felhasználó e-mail címe:', this.userEmail);
+      this.username = storedEmail.split('@')[0]; 
+      this.isLoggedIn = true;
     } else {
-      console.log('Nincs elmentett e-mail cím.');
+      this.isLoggedIn = false;
     }
   }
 
@@ -28,14 +33,21 @@ export class FiokomComponent implements OnInit {
   }
 
   logout() {
+    
     localStorage.removeItem('loggedInUser');
     this.router.navigate(['/login']);
   }
 
   purchase() {
-    this.router.navigate(['/']); 
+    this.router.navigate(['/']);
+  }
+
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  
+  goToRegister() {
+    this.router.navigate(['/registration']);
   }
 }
-
-
-

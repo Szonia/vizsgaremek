@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fiókom</title>
-</head>
-<body>
-    <div class="container">
-        <div class="profile-card">
-            <img src="assets/logo.png" alt="Profilkép" class="profile-img">
-            <h1 class="profile-name">Email cím:</h1>
-            <p class="profile-email">{{ userEmail || '' }}</p>
-            <h2>Szia, {{ userEmail || 'Vendég' }}!</h2>
-            <!-- <button (click)="editProfile()">Profil szerkesztése</button>
-            <button (click)="logout()">Kijelentkezés</button> -->
-            <button (click)="purchase()">Vásárolnék</button> 
-        </div>
+<div class="container" *ngIf="isLoggedIn; else notLoggedIn">
+    <div class="profile-card">
+      <img src="assets/logo.png" alt="Profilkép" class="profile-img">
+      
+      <h1 class="profile-name">Be vagy jelentkezve a következő email címmel:</h1>
+      <p class="profile-email">{{ userEmail }}</p>
+      
+      <h2>Szia, {{ username }}!</h2>
+      
+      <button (click)="purchase()">Vásárolnék</button>
     </div>
-</body>
-</html>
-
-
-
+  </div>
+  
+  <ng-template #notLoggedIn>
+    <div class="container">
+      <div class="profile-card">
+        <h2>Nem vagy bejelentkezve.</h2>
+        <button (click)="goToLogin()">Belépés</button>
+        <p>Nincs még fiókod? <span>Regisztrálj!</span></p>
+        <button (click)="goToRegister()">Regisztráció</button>
+      </div>
+    </div>
+  </ng-template>
+  
