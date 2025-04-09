@@ -17,7 +17,7 @@ export class SavanyuUditokComponent {
 
   constructor(private cartService: CartService, private cdr: ChangeDetectorRef, private prodServ:ProductlistService) 
   {this.prodServ.getProducts().subscribe(
-    (res)=>this.candies=res)}
+    (res)=>this.candies=res);}
 
 
   kosarbaRak(candy: any, quantity_in: string) {
@@ -28,7 +28,7 @@ export class SavanyuUditokComponent {
     };
     
     this.cartService.addToCart(termek);  
-    console.log(candy, `hozzáadva a kosárhoz.`);
+    console.log(candy, 'hozzáadva a kosárhoz.');
     console.log('Kosár tartalma:', this.cartService.getCartItems());
 
     this.showNotification = true;

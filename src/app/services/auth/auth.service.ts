@@ -128,7 +128,7 @@ export class AuthService {
         return { success: true };
       })
       .catch(error => {
-        console.error("Regisztrációs hiba:", error);
+        console.error('Regisztrációs hiba:', error);
         return { success: false };
       });
   }
@@ -138,7 +138,7 @@ export class AuthService {
       .then(cred => {
         if (cred.user) {
           this.loggedUserSubject.next(cred.user);
-          console.log("Bejelentkezés sikeres!");
+          console.log('Bejelentkezés sikeres!');
 
           if (!cred.user.emailVerified) {
             alert('Kérjük, erősítse meg az email címét!');
@@ -162,7 +162,7 @@ export class AuthService {
         }
       })
       .catch((error: any) => {
-        console.error("Hiba a bejelentkezéskor:", error);
+        console.error('Hiba a bejelentkezéskor:', error);
         return { success: false };
       });
   }
@@ -174,7 +174,7 @@ export class AuthService {
     return signInWithPopup(auth, provider)
       .then(result => {
         const user = result.user;
-        console.log("Google login sikeres!", user);
+        console.log('Google login sikeres!', user);
 
         if (!user.emailVerified) {
           sendEmailVerification(user);
@@ -195,7 +195,7 @@ export class AuthService {
         return { success: true };
       })
       .catch((error: any) => {
-        console.error("Google login hiba:", error);
+        console.error('Google login hiba:', error);
         return { success: false };
       });
   }

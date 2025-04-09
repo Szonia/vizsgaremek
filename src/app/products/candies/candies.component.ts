@@ -12,18 +12,18 @@ export class CandiesComponent {
 
   @Input() candies: any;
   showNotification = false;
-  searchText=""
-  order=""
+  searchText='';
+  order='';
 
   constructor(private cartService: CartService, private cdr:ChangeDetectorRef, private searchServ:SearchService) {
     
     this.searchServ.getSearch().subscribe(
       (text:any)=>{
-        console.log("Frissítés", text)
-        this.searchText=text
-        console.log("this.searchText", this.searchText)
+        console.log('Frissítés', text);
+        this.searchText=text;
+        console.log('this.searchText', this.searchText);
       }
-    )
+    );
 
   }
 
@@ -35,7 +35,7 @@ export class CandiesComponent {
     };
     
     this.cartService.addToCart(termek);  
-    console.log(candy, `hozzáadva a kosárhoz.`);
+    console.log(candy, 'hozzáadva a kosárhoz.');
     console.log('Kosár tartalma:', this.cartService.getCartItems());
 
     this.showNotification = true;
@@ -49,7 +49,7 @@ export class CandiesComponent {
     }, 500);
   }
   sortProducts(order: string) {
-    this.order=order
+    this.order=order;
 
   }
   

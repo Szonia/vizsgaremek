@@ -1,7 +1,7 @@
-import { db } from "./src/firebase"; 
+import { db } from './src/firebase'; 
 
 const seedCarts = async () => {
-  const cartsRef = db.ref("carts"); 
+  const cartsRef = db.ref('carts'); 
 
   const sampleCarts = {
     user123: {
@@ -20,9 +20,9 @@ const seedCarts = async () => {
 
   try {
     await cartsRef.set(sampleCarts);
-    console.log("✅ Carts adatbázis feltöltve!");
+    console.log('✅ Carts adatbázis feltöltve!');
   } catch (error) {
-    console.error("❌ Hiba történt:", error);
+    console.error('❌ Hiba történt:', error);
   }
 };
 

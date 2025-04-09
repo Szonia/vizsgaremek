@@ -6,16 +6,16 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SearchService {
 
-  searchSub= new BehaviorSubject<string>("")
+  searchSub= new BehaviorSubject<string>('');
 
   constructor() { }
 
   getSearch(){
-    return this.searchSub
+    return this.searchSub;
   }
 
   setSearch(text:string){
-    console.log("Frissítek",text)
-    this.searchSub.next(text)
+    console.log('Frissítek',text);
+    this.searchSub.next(text);
   }
 }

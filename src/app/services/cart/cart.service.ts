@@ -20,12 +20,12 @@ export class CartService {
     private auth: AngularFireAuth,  
     private router: Router
   ) {
-    this.ordersRef = db.list("orders");
+    this.ordersRef = db.list('orders');
     this.loadCart();
   }
 
   addToCart(candy: any) {
-    console.log("addToCart hívva");
+    console.log('addToCart hívva');
     const existingItem = this.cart.find(item => item.key === candy.key);
     if (existingItem) {
       existingItem.mennyiseg = candy.mennyiseg;
@@ -45,7 +45,7 @@ export class CartService {
   }
 
   removeFromCart(productKey: string) {
-    console.log("Eltávolítás hívva, termék kulcs:", productKey);
+    console.log('Eltávolítás hívva, termék kulcs:', productKey);
     this.cart = this.cart.filter(item => item.key !== productKey); 
     this.calculateTotalPrice(); 
     this.saveCart(); 
@@ -65,7 +65,7 @@ export class CartService {
 
   addOrder(order: any) {
     order.items = this.cart; 
-    order.status = "pending";
+    order.status = 'pending';
     this.ordersRef.push(order).then(() => {
       this.sendOrderConfirmationEmail(order.email, order); 
     });

@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import { db } from "../firebase";
-import { ref, get, set, remove } from "firebase/database";
+import { Request, Response } from 'express';
+import { db } from '../firebase';
+import { ref, get, set, remove } from 'firebase/database';
 
-const CARTS_REF = "carts";
+const CARTS_REF = 'carts';
 
 export const getCart = async (req: Request, res: Response) => {
   const { userId } = req.params;
@@ -13,8 +13,8 @@ export const getCart = async (req: Request, res: Response) => {
     }
     return res.json(snapshot.val()); 
   } catch (error) {
-    console.error(" Error occurred while getting cart:", error);
-    return res.status(500).json({ error: "Hiba történt a kosár lekérésekor." }); 
+    console.error(' Error occurred while getting cart:', error);
+    return res.status(500).json({ error: 'Hiba történt a kosár lekérésekor.' }); 
   }
 };
 
@@ -41,8 +41,8 @@ export const addToCart = async (req: Request, res: Response) => {
 
     return res.json(cart); 
   } catch (error) {
-    console.error(" Hiba történt a kosár frissítésekor:", error);
-    return res.status(500).json({ error: "Hiba történt a kosár frissítésekor." });
+    console.error(' Hiba történt a kosár frissítésekor:', error);
+    return res.status(500).json({ error: 'Hiba történt a kosár frissítésekor.' });
   }
 };
 
@@ -53,10 +53,10 @@ export const updateCart = async (req: Request, res: Response)=> {
   try {
     const cartRef = db.ref(`${CARTS_REF}/${userId}`);
     await cartRef.set({ items });  
-    res.json({ message: "Kosár frissítve." });
+    res.json({ message: 'Kosár frissítve.' });
   } catch (error) {
-    console.error(" Hiba történt a kosár frissítésekor:", error);
-    res.status(500).json({ error: "Hiba történt a kosár frissítésekor." });
+    console.error(' Hiba történt a kosár frissítésekor:', error);
+    res.status(500).json({ error: 'Hiba történt a kosár frissítésekor.' });
   }
 };
 
@@ -68,7 +68,7 @@ export const deleteCart = async (req: Request, res: Response): Promise<Response>
     const snapshot = await cartRef.get();
 
     if (!snapshot.exists()) {
-       return res.status(404).json({ error: "Kosár nem található." });
+      return res.status(404).json({ error: 'Kosár nem található.' });
     }
 
     const cart = snapshot.val();
@@ -76,25 +76,25 @@ export const deleteCart = async (req: Request, res: Response): Promise<Response>
     if (productId) {
       const productIndex = cart.items.findIndex((item: any) => item.productId === productId);
       if (productIndex === -1) {
-        return res.status(404).json({ error: "A termék nem található a kosárban." });
+        return res.status(404).json({ error: 'A termék nem található a kosárban.' });
       }
 
       cart.items.splice(productIndex, 1);
 
       if (cart.items.length === 0) {
         await cartRef.remove();
-        return res.status(200).json({ message: "Kosár törölve." });
+        return res.status(200).json({ message: 'Kosár törölve.' });
       }
 
       await cartRef.set(cart);
-      res.status(200).json({ message: "Termék törölve a kosárból.", cart });
+      res.status(200).json({ message: 'Termék törölve a kosárból.', cart });
     }
 
     await cartRef.remove();
-    return res.status(200).json({ message: "Kosár törölve." });
+    return res.status(200).json({ message: 'Kosár törölve.' });
 
   } catch (error) {
-    console.error(" Hiba történt a kosár törlésénél:", error);
-     return res.status(500).json({ error: "Hiba történt a kosár törlésénél." });
+    console.error(' Hiba történt a kosár törlésénél:', error);
+    return res.status(500).json({ error: 'Hiba történt a kosár törlésénél.' });
   }
 };

@@ -34,7 +34,7 @@ export class KosarComponent implements OnInit {
   }
 
   goCheckOut(){
-    this.router.navigate(['/checkout'])
+    this.router.navigate(['/checkout']);
   }
 }
 

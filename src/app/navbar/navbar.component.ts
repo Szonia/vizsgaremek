@@ -14,7 +14,7 @@ export class NavbarComponent {
   searchQuery: string = ''; 
   searchResult: any[] = [];  
   
-  user:any
+  user:any;
   
   products = [
     { name: 'Sour patch kids', category: 'Snack' },
@@ -30,11 +30,11 @@ export class NavbarComponent {
 
     this.auth.getCurrentUser().subscribe(
       (u)=>this.user=u
-    )
+    );
   }
 
   setSearch(car:string){
-    this.searchServ.setSearch(car)
+    this.searchServ.setSearch(car);
   }
 
   addOrder() {
@@ -43,7 +43,7 @@ export class NavbarComponent {
   }
 
   signOut(){
-    this.auth.logout()
+    this.auth.logout();
   }
   
 

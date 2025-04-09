@@ -7,8 +7,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SortPipe implements PipeTransform {
 
   transform(candies:any[], order:string): any {
-    if (!candies) return null;
-    if (!order) return candies
+    if (!candies) {return null;}
+    if (!order) {return candies;}
 
     if (order === 'high-to-low') {
      return candies.sort((a: { price: number; }, b: { price: number; }) => b.price - a.price);  

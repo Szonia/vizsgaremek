@@ -8,12 +8,12 @@ import { ProductlistService } from '../../productlist.service';
     standalone: false
 })
 export class CandyListComponent {
-  candies:any
+  candies:any;
   
   constructor(private prodServ:ProductlistService){
     this.prodServ.getProducts().subscribe(
       (res)=>this.candies=res
-    )
+    );
 
   }
 }

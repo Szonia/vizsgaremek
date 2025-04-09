@@ -11,10 +11,10 @@ import { CartService } from '../cart.service';
 })
 export class ProductlistComponent {
   products: any[] = [];
-  newProduct:any={}
-  searchText=""
+  newProduct:any={};
+  searchText='';
 
-  columns= [ "category", "description", "name", "picture", "price", "quantity" ]
+  columns= [ 'category', 'description', 'name', 'picture', 'price', 'quantity' ];
 
   constructor(private pserv: ProductlistService, private cartServ: CartService) {
     this.pserv.getProducts().subscribe(
@@ -24,7 +24,7 @@ export class ProductlistComponent {
 
   addProduct() {
     this.pserv.pushProduct(this.newProduct);
-    this.newProduct={}
+    this.newProduct={};
   }
 
   sortProducts(order: string) {
@@ -37,10 +37,10 @@ export class ProductlistComponent {
 
 
   editProduct(product:any){
-    console.log(product)
-    this.pserv.updateProduct(product)
+    console.log(product);
+    this.pserv.updateProduct(product);
   }
   deleteProduct(product:any){
-    this.pserv.deleteProduct(product)
+    this.pserv.deleteProduct(product);
   }
 }

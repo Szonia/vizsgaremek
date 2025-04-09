@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
   
     const subMenus = document.querySelectorAll('.dropdown-submenu');
   

@@ -48,7 +48,7 @@ export class RegistrationComponent {
           alert('Regisztrációs hiba történt');
         }
       }).catch(err => {
-        console.error("Hiba történt!", err);
+        console.error('Hiba történt!', err);
         alert('Ismeretlen hiba történt');
       });
     }
